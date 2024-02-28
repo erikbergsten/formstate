@@ -1,63 +1,10 @@
-import { useState, Dispatch, SetStateAction, FormEvent } from 'react'
-import styles from './form.module.css';
+import { Select, TextInput, useFormState } from './form';
 
 type Registration = {
   name: string,
   address: string,
   tags: string[],
   age: number
-}
-
-type FormState<T> = T & {
-  errors: Record<keyof T, string>
-}
-type FormDispatch<T> = Dispatch<SetStateAction<FormState<T>>>
-
-const useFormState = <T,>(init: T): [FormState<T>, FormDispatch<T>] => useState({
-  ...init,
-  errors: {} as Record<keyof T, string>
-})
-type Validator<T> = (key: string, value: T) => string | undefined
-
-type TextInputProps<K, T> = {
-  property: K,
-  state: FormState<T>,
-  dispatch: FormDispatch<T>,
-  valid?: Validator<string>
-}
-
-function TextInput<K extends string, T extends Record<K, string>>({
-  property,
-  state,
-  dispatch,
-  valid
-}: TextInputProps<K, T>) {
-  const onChange = (e: FormEvent<HTMLInputElement>) => {
-    const value: string = e.currentTarget.value
-    dispatch((s) => ({...s, [property]: value}))
-    const error = valid && valid(property, value)
-    if(error) {
-      dispatch((s) => ({...s, errors: {...s.errors, [property]: error}}))
-    } else {
-      dispatch((s) => ({...s, errors: {...s.errors, [property]: undefined}}))
-    }
-  }
-  return (
-    <span className={styles.inputRow}>
-      <label> { property }: </label>
-      <input type='text'
-        value={state[property]}
-        onChange={onChange}
-      />
-      {
-        state.errors[property] && (
-          <label className={styles.error}>
-            { state.errors[property] }
-          </label>
-        )
-      }
-    </span>
-  )
 }
 
 function App() {
@@ -78,6 +25,12 @@ function App() {
         dispatch={setRegistration}
         property='name'
         valid={(_k, v) => v.length > 10 ? "max length: 10" : undefined}
+      />
+      <Select
+        state={registration}
+        dispatch={setRegistration}
+        property='tags'
+        options={['foo', 'bar', 'baz']}
       />
     </form>
     <pre>{JSON.stringify(registration, null, 2)}</pre>

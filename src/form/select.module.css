@@ -1,0 +1,30 @@
+
+.select {
+  position: relative;
+  border: 1px solid blue;
+  display: inline-block;
+
+}
+
+.bubble {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.select:hover {
+  cursor: caret;
+}
+
+.focused {
+  outline: 3px solid green;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  background-color: white;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
