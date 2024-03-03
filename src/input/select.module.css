@@ -1,0 +1,59 @@
+.select {
+  width: 100%;
+  position: relative;
+  border: 1px solid #555;
+  padding: 0.25em;
+  cursor: text;
+  border-radius: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em;
+
+  .input {
+    outline: none;
+    border: none;
+  }
+}
+
+.focused {
+  outline: 1px solid black;
+}
+
+.bubble {
+  border: 1px solid black;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.bubble:hover {
+  cursor: pointer;
+}
+
+.select:hover {
+  cursor: caret;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-sizing: border-box;
+  width: 100%;
+  left: 0;
+  span {
+    padding: 0.25rem;
+  }
+  span:hover {
+    background-color: #ccf;
+    cursor: pointer;
+  }
+}
+
+.highlight {
+  background-color: #ccf;
+}

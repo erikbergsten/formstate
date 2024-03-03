@@ -20,20 +20,12 @@ export function TextInput<K extends string, T extends Record<K, string>>({
     }
   }
   return (
-    <span className={styles.inputRow}>
-      <label> { property }: </label>
+    <div className={styles.inputWrapper}>
       <input type='text'
         value={state[property]}
         onChange={onChange}
       />
-      {
-        state.errors[property] && (
-          <label className={styles.error}>
-            { state.errors[property] }
-          </label>
-        )
-      }
-    </span>
+    </div>
   )
 }
 

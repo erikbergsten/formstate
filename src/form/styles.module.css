@@ -1,3 +1,19 @@
+.inputWrapper {
+  width: 100%;
+  border: 1px solid #555;
+  padding: 0.25em;
+  border-radius: 3px;
+
+  input[type=text] {
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+}
+
+.inputWrapper:focus-within {
+    outline: 1px solid black;
+}
 
 .inputRow {
   display: flex;
